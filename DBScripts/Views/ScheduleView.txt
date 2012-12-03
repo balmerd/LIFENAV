@@ -1,0 +1,11 @@
+﻿/****** Object:  View [dbo].[LIFENAV_ScheduleView]    Script Date: 04/07/2009 10:31:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER VIEW [dbo].[LIFENAV_ScheduleView]
+AS
+SELECT TOP (100) PERCENT ca.ClientId, ca.ServiceId, s.Name AS ServiceName, s.ShortName, ca.ReservedDateTime
+FROM [dbo].[LIFENAV_Client_Appointment] ca 
+INNER JOIN [dbo].[LIFENAV_Service] s ON ca.ServiceId = s.Id
+GO

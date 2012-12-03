@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="LifeNavigator.Web.SiteMaster" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head runat="server">
+	<title>Life Navigator</title>
+	<meta name="description" content="Assisting people with navigating through the challenges of life in the privacy of their own home. Private face to face web meetings with your issues, concerns or inquiries as the primary focus." />
+	<meta name="keywords" content="counseling,depression,anxiety,trauma,PTSD,personality disorder,career,life purpose,life meaning,adjustment,neurotic,psychotic,mood disorders,addictions,sex addictions,ponography,identity,sexual orientation,infidelity,psychic,psychic counseling,religion,spirituality,religious counseling,spiritual counseling,christian counseling,relationships,children's counseling,anger management,depression,marriage counseling,internet counseling,web counseling" />
+	<asp:Literal ID="litExternalCSS" runat="server" />
+	<link rel="stylesheet" type="text/css" href="/Styles/lifenav.css" />
+    <asp:ContentPlaceHolder id="cpHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="yui-skin-sam">
+<div id="doc3" class="custom">
+	<div id="hd">
+		<div id="shadow">
+			<div class="center-width">
+				<a id="life-navigator" href="/"><img src="/Images/life-navigator.gif" width="256" height="50" alt="Life Navigator" /></a>
+			</div>
+		</div>
+		<div id="banner">
+			<div class="center-width">
+				<div id="nav-logo-container">
+					<div id="navigation">
+						<ul>
+							<li><asp:HyperLink ID="lnkBio" runat="server">Biography</asp:HyperLink></li>
+							<li><asp:HyperLink ID="lnkGetStarted" runat="server">How to Get Started</asp:HyperLink></li>
+							<li><asp:HyperLink ID="lnkPricing" runat="server">Pricing</asp:HyperLink></li>
+							<li><asp:HyperLink ID="lnkAgreement" runat="server">Registration</asp:HyperLink></li>
+							<li><%=LifeNavigator.Util.MailUtil.ObfuscateEmail("lee@yourlifenavigator.com","Contact Me")%></li>
+							<li><asp:HyperLink ID="lnkAccount" runat="server">Your Account</asp:HyperLink></li>
+						</ul>
+					</div>
+					<div id="logo">
+						<div style="position:relative; top:-20px;">
+							<img id="sailboat" src="/Images/sailboat.jpg" width="480" height="140" alt="" />
+							<img src="/Images/tagline.gif" width="480" height="25" alt="You are the Captain and I am your Navigator" />
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div id="bd">
+		<div class="yui-g">
+			<div class="center-width">
+				<div id="main-content">
+					<form id="form1" runat="server">
+						<asp:ContentPlaceHolder id="cpMain" runat="server">
+						</asp:ContentPlaceHolder>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="ft">&copy; <%=DateTime.Now.Year%> Life Navigator, all rights reserved.</div>
+</div>
+<asp:Literal ID="litExternalJS" runat="server" />
+<script type="text/javascript" src="/Scripts/lifenav.js"></script>
+<asp:ContentPlaceHolder id="cpJavaScript" runat="server">
+</asp:ContentPlaceHolder>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9150251-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>

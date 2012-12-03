@@ -1,0 +1,29 @@
+﻿/****** Object:  Table [dbo].[LIFENAV_Client]    Script Date: 04/07/2009 10:30:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[LIFENAV_Client](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [varchar](50) NOT NULL,
+	[LastName] [varchar](50) NOT NULL,
+	[Address1] [varchar](50) NOT NULL,
+	[Address2] [varchar](50) NULL,
+	[City] [varchar](50) NOT NULL,
+	[StateCode] [char](2) NOT NULL,
+	[ZipCode] [varchar](10) NOT NULL,
+	[HomePhone] [varchar](30) NULL,
+	[WorkPhone] [varchar](30) NULL,
+	[Email] [varchar](50) NULL,
+	[Password] [varchar](10) NULL,
+	[CreationDate] [datetime] NOT NULL CONSTRAINT [DF_LIFENAV_Contact_CreationDate]  DEFAULT (getdate()),
+ CONSTRAINT [PK_LIFENAV_Contact] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF

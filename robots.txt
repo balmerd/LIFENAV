@@ -1,0 +1,17 @@
+﻿User-agent: *
+Disallow: /Admin/
+Disallow: /App_Code/
+Disallow: /App_Data/
+Disallow: /Archive/
+Disallow: /Bin/
+Disallow: /DBScripts/
+Disallow: /Docs/
+Disallow: /Errors/
+Disallow: /Forms/
+Disallow: /Images/
+Disallow: /Masterpages/
+Disallow: /Scripts/
+Disallow: /Styles/
+Disallow: /WebServices/
+Disallow: Global.asax/
+Sitemap: http://yourlifenavigator.com/sitemap.xml

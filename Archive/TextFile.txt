@@ -1,0 +1,205 @@
+﻿Schedule.aspx
+
+<%@ Page Language="C#" MasterPageFile="~/Masterpages/Site.master" AutoEventWireup="true" CodeFile="Schedule.aspx.cs" Inherits="LifeNavigator.Web.Schedule" Title="Life Navigator - Schedule" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cpHead" Runat="Server">
+	<!-- Individual YUI CSS files -->  
+	<!--
+	<link rel="stylesheet nofollow" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
+	-->
+	<link href="/Styles/container.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		/* COLORS */
+		/* #426fd9	dark	*/
+		/* #b3d4ff	light	*/
+
+		#divCalendar th, #divCalendar td {
+			border-style: none;
+			padding: 2px;
+		}
+		
+		#legend {
+			line-height: 1.5em;
+			margin-bottom: 1em;
+ 		}
+		#legend span {
+			border: 1px solid #555;
+ 		}
+		#legend .open {
+			background-color: #fff;
+		}
+		#legend .reserved {
+			background-color: Red;
+			font-weight: bold;
+		}
+		#legend .open-reserved {
+			background-color: #426fd9;
+		}
+		#appointment-module {
+			xxx-float: right; 
+			xxx-width: 200px; 
+			border: 1px solid #999;
+			background-color: #F0F8FF;
+		}
+		#appointment-module .hd {
+			color: #EEE;
+			font-weight: bold;
+			text-align: center;
+			padding: 2px 5px 5px 5px;
+			background: #3F6AD1 url(http://yui.yahooapis.com/2.7.0/build/assets/skins/sam/sprite.png) repeat-x 0 -1400px;
+		}
+		#appointment-module .bd {
+			font-size: 92%;
+			padding: 0.75em;
+		}
+		#appointment {
+		}
+		#appointment table {
+			width: 100%;
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+		}
+		#appointment table td {
+			padding: 5px;
+			border: 1px solid #ddd;
+		}
+		#appointment .reserved {
+			color: Red;
+			font-weight: bold;
+		}
+		.clsTitle {
+			border-style: none;
+		}
+		.clsDayHeader {
+			padding: 2px;
+		}
+		td.clsDayStyle {
+			xxx-margin: 2px;
+		}
+		td.clsDayStyle a {
+			text-decoration: none;
+		}
+		td.clsDayStyle a:hover {
+			xxx-font-weight: bold;
+			color: #FFF;
+			background-color: #666;
+		}
+	</style>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cpMain" Runat="Server">
+	<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+	<h1 class="first" style="margin-bottom:1em;">Appointment Schedule</h1>
+	<div id="legend" style="margin-bottom:1em; line-height:1.5em;">
+		<b>Legend:</b>&nbsp;
+		<span class="open">&nbsp;&nbsp;</span>&nbsp;open&nbsp;
+		<span class="reserved">&nbsp;&nbsp;</span>&nbsp;reserved&nbsp;
+		<span class="open-reserved">&nbsp;&nbsp;</span>&nbsp;open, but some times are already reserved
+	</div>
+	<div style="float:left; width:100%;">
+		<div id="divCalendar" style="float:left; width:260px;">
+			<asp:UpdatePanel ID="pnlCalendar" runat="server">
+				<ContentTemplate>
+					<asp:Calendar ID="calApp" runat="server" BackColor="White" BorderColor="#CCCCCC" 
+						BorderStyle="Solid" CellSpacing="0" CellPadding="0" Font-Names="Verdana" Font-Size="100%" 
+						ForeColor="Black" Height="250px" NextPrevFormat="ShortMonth" Width="250px">
+						<SelectedDayStyle BackColor="#333399" ForeColor="White" />
+						<TodayDayStyle BackColor="#999999" ForeColor="White" />
+						<OtherMonthDayStyle ForeColor="#999999" />
+						<DayStyle BackColor="#FFFFFF" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1" CssClass="clsDayStyle" />
+						<NextPrevStyle Font-Bold="True" ForeColor="White" Font-Size="100%" />
+						<DayHeaderStyle Font-Bold="True" Font-Size="100%" ForeColor="#666666" Height="1em" CssClass="clsDayHeader" />
+						<TitleStyle BackColor="#3F6AD1" Font-Bold="True" Font-Size="100%" ForeColor="White" Height="1em" CssClass="clsTitle" />
+					</asp:Calendar>
+					<br />
+					<a href="javascript:__doPostBack('__Page','3364')">test</a>
+				</ContentTemplate>
+			</asp:UpdatePanel>
+		</div>
+		<div style="float:right; width:420px;">
+			<asp:UpdatePanel ID="pnlAppointments" runat="server">
+				<Triggers>
+					<asp:AsyncPostBackTrigger ControlID="calApp" EventName="" />
+				</Triggers>
+				<ContentTemplate>
+					<div id="appointment-module">
+						<div id="today" class="hd" runat="server"></div>
+						<div id="appointment" class="bd">
+							<table width="100%" cellpadding="0" cellspacing="0" border="1">
+								<tr>
+									<td style="width:3em;"><b>9<sup>AM</sup></b></td>
+									<td>
+										<span id="9AM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="9AM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+								<tr>
+									<td><b>10<sup>AM</sup></b></td>
+									<td>
+										<span id="10AM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="10AM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+								<tr>
+									<td><b>11<sup>AM</sup></b></td>
+									<td>
+										<span id="11AM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="11AM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+								<tr>
+									<td><b>1<sup>PM</sup></b></td>
+									<td>
+										<span id="1PM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="1PM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+								<tr>
+									<td><b>2<sup>PM</sup></b></td>
+									<td class="reserved">RESERVED</td>
+								</tr>
+								<tr>
+									<td><b>3<sup>PM</sup></b></td>
+									<td>
+										<span id="3PM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="3PM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+								<tr>
+									<td><b>4<sup>PM</sup></b></td>
+									<td>
+										<span id="4PM" class="yui-button yui-push-button"> 
+											<span class="first-child"> 
+												<input type="button" name="4PM" value="reserve" />
+											</span> 
+										</span> 
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</ContentTemplate>
+			</asp:UpdatePanel>
+		</div>
+	</div>
+	<div class="clear"></div>
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cpJavaScript" Runat="Server">
+</asp:Content>
+

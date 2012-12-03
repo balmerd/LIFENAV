@@ -1,0 +1,30 @@
+﻿/****** Object:  StoredProcedure [dbo].[LIFENAV_GetMembershipXML]    Script Date: 04/07/2009 10:31:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- http://www.codeproject.com/KB/database/SqlForXmlSerialization.aspx
+--
+--	Creates output that looks like:
+--	<Client Id="1" FirstName="DavidB" LastName="TestCase" Email="david_balmer@earthlink.net" Password="topsecret" />
+--
+ALTER PROCEDURE [dbo].[LIFENAV_GetMembershipXML] (
+	@clientId int
+)
+AS
+SET NOCOUNT ON
+DECLARE @XMLResult xml
+
+SELECT @XMLResult = 
+(
+	SELECT	Id "@Id",
+			FirstName "@FirstName",
+			LastName "@LastName",
+			Email "@Email",
+			Password "@Password"
+	FROM	dbo.LIFENAV_Client
+	WHERE	Id = @ClientId 
+	FOR XML PATH ('Client'), type
+)
+
+SELECT @XMLResult

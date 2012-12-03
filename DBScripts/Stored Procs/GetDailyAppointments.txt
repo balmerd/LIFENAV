@@ -1,0 +1,34 @@
+﻿/****** Object:  StoredProcedure [dbo].[LIFENAV_GetDailyAppointments]    Script Date: 04/07/2009 10:31:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--
+-- Get all Client appointments for a selected day
+-- or all future appointments for a selected Client
+--
+ALTER PROCEDURE [dbo].[LIFENAV_GetDailyAppointments] (
+	@startDate datetime,
+	@duration int = null,
+	@clientId int = null
+)
+AS
+SET NOCOUNT ON
+
+DECLARE @endDate DateTime
+
+IF @duration IS NULL
+	SELECT @endDate =  '2100-01-01'
+ELSE
+	SELECT @endDate =  DATEADD(day, 1, @startDate)
+
+IF @clientId IS NULL
+	SELECT * FROM [dbo].[LIFENAV_ScheduleView]
+	WHERE ReservedDateTime >= @startDate AND ReservedDateTime < @endDate 
+	ORDER BY ReservedDateTime ASC
+ELSE
+	SELECT * FROM [dbo].[LIFENAV_ScheduleView] 
+	WHERE ClientId = @clientId
+	AND ReservedDateTime >= @startDate AND ReservedDateTime < @endDate 
+	ORDER BY ReservedDateTime ASC
+

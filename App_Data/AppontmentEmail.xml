@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type='text/xsl' href='AppointmentEmail.xsl'?>
+<Client Id="1" FirstName="DavidB" LastName="Testcase" Email="tester@yahoo.com">
+	<Appointment Date="Friday, April 3, 2009" Time="10:00 AM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="11:00 AM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="9:00 AM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="10:00 AM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="1:00 PM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="2:00 PM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="3:00 PM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Wednesday, May 6, 2009" Time="4:00 PM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Monday, May 4, 2009" Time="10:00 AM" Service="Life Navigator for Individuals" />
+	<Appointment Date="Thursday, April 16, 2009" Time="11:00 AM" Service="Life Navigator for Families" />
+	<Appointment Date="Thursday, April 16, 2009" Time="2:00 PM" Service="Life Navigator for Group of 10" />
+</Client>

@@ -1,0 +1,43 @@
+﻿/****** Object:  StoredProcedure [dbo].[LIFENAV_GetAppointmentXML]    Script Date: 04/07/2009 10:31:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- http://www.codeproject.com/KB/database/SqlForXmlSerialization.aspx
+--
+--	Creates output that looks like:
+--
+--	<Client Id="1" FirstName="DavidB" LastName="Testcase" Email="tester@yahoo.com">
+--		<Appointment Date="Friday, April 3, 2009" Time="10:00 AM" Service="Life Navigator for Individuals" />
+--		<Appointment Date="Thursday, April 16, 2009" Time="2:00 PM" Service="Life Navigator for Group of 10" />
+--	</Client>
+--
+ALTER PROCEDURE [dbo].[LIFENAV_GetAppointmentXML] (
+	@clientId int
+)
+AS
+SET NOCOUNT ON
+DECLARE @XMLResult xml
+DECLARE @StartDate DateTime
+SELECT	@StartDate = DATENAME(year, GETDATE()) + '/' + DATENAME(month, GETDATE()) + '/01' 
+
+SELECT @XMLResult = 
+(
+	SELECT	Id "@Id",
+			FirstName "@FirstName",
+			LastName "@LastName",
+			Email "@Email",
+			(
+				SELECT	DATENAME(weekday, ReservedDateTime) + ', ' + DATENAME(month, ReservedDateTime) + ' ' + DATENAME(dd, ReservedDateTime) + ', ' +  DATENAME(year, ReservedDateTime) "@Date",
+						CASE WHEN DATEPART(hour, ReservedDateTime) > 12 THEN (CONVERT(varchar, DATEPART(hour, ReservedDateTime) - 12)) + ':00 PM' ELSE DATENAME(hour, ReservedDateTime) + ':00 AM' END "@Time",
+						ServiceName "@Service"
+				FROM	dbo.LIFENAV_ScheduleView
+				WHERE	ClientId = @ClientId AND ReservedDateTime >= @StartDate
+				FOR XML PATH ('Appointment'), type
+			)
+	FROM	dbo.LIFENAV_Client
+	WHERE	Id = @ClientId 
+	FOR XML PATH ('Client'), type
+)
+
+SELECT @XMLResult

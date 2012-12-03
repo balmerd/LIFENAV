@@ -1,0 +1,21 @@
+﻿/****** Object:  StoredProcedure [dbo].[LIFENAV_GetMonthlySchedule]    Script Date: 04/07/2009 10:32:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--
+-- Get number of appointments for each day of a selected month/year
+--
+ALTER PROCEDURE [dbo].[LIFENAV_GetMonthlySchedule] (
+	@startDate datetime
+)
+AS
+SET NOCOUNT ON
+DECLARE @endDate DateTime
+SELECT @endDate =  DATEADD(month, 1, @startDate)
+
+SELECT DATEPART(year, ReservedDateTime) AS Year, DATEPART(month, ReservedDateTime) AS Month, DATEPART(day, ReservedDateTime) AS Day, COUNT(*) AS Appointments 
+FROM [dbo].[LIFENAV_ScheduleView] 
+WHERE ReservedDateTime >= @startDate AND ReservedDateTime < @endDate 
+GROUP BY DATEPART(year, ReservedDateTime), DATEPART(month, ReservedDateTime), DATEPART(day, ReservedDateTime)
+ORDER BY DATEPART(year, ReservedDateTime), DATEPART(month, ReservedDateTime), DATEPART(day, ReservedDateTime) ASC

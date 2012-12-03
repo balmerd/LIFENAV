@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="LIFENAV" Class="AppointmentDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PPC-25970\SQLEXPRESS;Initial Catalog=LIFENAV;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LocalConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.LIFENAV_Client_Appointment" Member="LIFENAV_Client_Appointments">
+    <Type Name="LIFENAV_Client_Appointment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ClientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReservedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDate" AutoSync="Never" Type="System.DateTime" DbType="DateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.LIFENAV_GetAppointmentXML" Method="LIFENAV_GetAppointmentXML">
+    <Parameter Name="clientId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LIFENAV_GetAppointmentXMLResult">
+      <Column Name="Column1" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

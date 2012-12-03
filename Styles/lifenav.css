@@ -1,0 +1,124 @@
+html {
+	min-height: 101%;
+}
+html, body {
+	color: #666;
+	font-family: Verdana, "Trebuchet MS", Georgia, "Times New Roman", Times, serif;
+	margin: 0;
+	padding: 0;
+}
+em {
+	font-style: normal;
+	font-weight: bold;
+}
+.center-width {
+	margin: 0 auto;
+	width: 750px;
+}
+#shadow {
+	background: #FFF url("/Images/shadow.jpg") bottom left repeat-x;
+}
+#banner {
+	background: #9933CC url("/Images/banner-bg.gif") bottom left repeat-x;
+	border-top: 1px solid #9933CC; /* borders required by Netscape 8, otherwise background is not displayed */
+	border-bottom: 1px solid #9933CC;
+}
+a#life-navigator {
+	outline-style: none;
+}
+#nav-logo-container {
+	float:left; 
+	width: 100%;
+}
+#navigation {
+	color: #FFF;
+	float: left;
+	width: 250px;
+}
+#navigation ul {
+	border: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 15em;
+}
+#navigation li {
+	margin: 0;
+	list-style: none;
+	list-style-image: none;
+	font-size: 100%;
+}
+#navigation li a {
+	color: #FFF;
+	display: block;
+	font-weight: bold;
+	xxx-padding: 8px 5px 10px 5px;
+	padding: 5px 5px 8px 5px;
+	text-decoration: none;
+	width: 100%;
+}
+#logo {
+	float: right;
+	width: 490px;
+}
+#logo img#sailboat {
+	display: block;
+	border: 1px solid #330;
+}
+#main-content {
+	min-height: 400px;
+	padding: 1em 0.5em 0.25em 0.5em;
+	border-bottom: 2px solid #663399;
+}
+#main-content h1 {
+	border-bottom: 2px solid #663399;
+	color: #444;
+	font-size: 161.6%;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+	padding-bottom: 1px;
+}
+#main-content h2 {
+	color: #0066CC;
+	font-style: italic;
+}
+#main-content li {
+	padding-bottom: 2px;
+}
+#main-content h1.first {
+	margin-top: 0;
+}
+#main-content a {
+	color: #663399;
+}
+#main-content a:hover {
+	color: blue;
+}
+html>body #navigation li a {
+	width: auto;
+}
+#navigation li a:hover {
+	color: #663399;
+	background-color: #B484DA;
+}
+#imgPayPal {
+	border-style: none;
+	padding-right: 10px;
+}
+.clear {
+	clear: both;
+}
+.hidden {
+	display: none;
+}
+/* YUI MODS */
+/* #doc = 750px; #doc2 = 950px; #doc3 = 100%; #doc4 = 974px */
+#doc3.custom {
+	margin: 0;
+	padding: 0;
+}
+#doc3.custom #ft {
+	font-size: 85%;
+	padding-top: 1em;
+	text-align: center;
+}

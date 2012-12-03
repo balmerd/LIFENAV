@@ -1,0 +1,21 @@
+﻿/****** Object:  Table [dbo].[LIFENAV_Client_Appointment]    Script Date: 04/07/2009 10:30:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[LIFENAV_Client_Appointment](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientId] [int] NOT NULL,
+	[ServiceId] [int] NOT NULL,
+	[ReservedDateTime] [datetime] NOT NULL,
+	[CreationDate] [datetime] NOT NULL CONSTRAINT [DF_LIFENAV_Client_Appointment_CreationDate_1]  DEFAULT (getdate()),
+ CONSTRAINT [PK_LIFENAV_Client_Appointment] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
